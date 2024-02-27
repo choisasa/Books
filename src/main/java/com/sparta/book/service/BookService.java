@@ -3,18 +3,17 @@ package com.sparta.book.service;
 import com.sparta.book.dto.BookRequestDto;
 import com.sparta.book.dto.BookResponseDto;
 import com.sparta.book.entity.Book;
+import com.sparta.book.repository.BookRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class BookService {
     private final BookRepository bookRepository;
-
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
 
     // 도서 등록 기능
     public BookResponseDto registerBook(BookRequestDto requestDto){

@@ -1,6 +1,6 @@
 package com.sparta.book.entity;
 
-import com.sparta.book.service.Timestamped;
+import com.sparta.book.repository.Timestamped;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package com.sparta.book.service;
+package com.sparta.book.repository;
 
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;

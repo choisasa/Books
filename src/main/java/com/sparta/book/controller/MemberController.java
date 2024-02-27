@@ -1,7 +1,7 @@
 package com.sparta.book.controller;
 
-import com.sparta.book.dto.MemberRequestDto;
-import com.sparta.book.dto.MemberResponseDto;
+import com.sparta.book.dto.member.MemberRequestDto;
+import com.sparta.book.dto.member.MemberResponseDto;
 import com.sparta.book.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

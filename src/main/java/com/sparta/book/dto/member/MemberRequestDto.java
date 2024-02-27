@@ -1,4 +1,4 @@
-package com.sparta.book.dto;
+package com.sparta.book.dto.member;
 
 import com.sparta.book.entity.Member;
 import lombok.Builder;
@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Builder
 @NoArgsConstructor
 public class MemberRequestDto {
     private String name;

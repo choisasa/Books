@@ -1,7 +1,7 @@
 package com.sparta.book.service;
 
-import com.sparta.book.dto.MemberRequestDto;
-import com.sparta.book.dto.MemberResponseDto;
+import com.sparta.book.dto.member.MemberRequestDto;
+import com.sparta.book.dto.member.MemberResponseDto;
 import com.sparta.book.entity.Member;
 import com.sparta.book.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;

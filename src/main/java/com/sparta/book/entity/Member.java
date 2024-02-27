@@ -1,8 +1,6 @@
 package com.sparta.book.entity;
 
-import com.sparta.book.dto.MemberRequestDto;
-import com.sparta.book.dto.MemberResponseDto;
-import com.sparta.book.repository.Timestamped;
+import com.sparta.book.dto.member.MemberResponseDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +9,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "member1")
-public class Member extends Timestamped {
+public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -52,7 +50,6 @@ public class Member extends Timestamped {
                 .gender(gender)
                 .phoneNumber(phoneNumber)
                 .address(address)
-                .socialSecurityNumber(socialSecurityNumber)
                 .build();
     }
 }

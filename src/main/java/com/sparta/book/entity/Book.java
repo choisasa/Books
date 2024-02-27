@@ -1,18 +1,17 @@
 package com.sparta.book.entity;
 
+import com.sparta.book.dto.book.BookResponseDto;
+import com.sparta.book.dto.member.MemberResponseDto;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name ="book")
-public class Book extends Timestamped {
+public class Book extends TimestampedBook {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,11 +33,22 @@ public class Book extends Timestamped {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    @Builder
     public Book(String title, String author, String language, String publisher, LocalDateTime createdAt) {
         this.title = title;
         this.author = author;
         this.language = language;
         this.publisher = publisher;
         this.createdAt = createdAt;
+    }
+
+    public BookResponseDto of() {
+        return BookResponseDto.builder()
+                .title(title)
+                .author(author)
+                .language(language)
+                .publisher(publisher)
+                .createdAt(createdAt)
+                .build();
     }
 }

@@ -17,17 +17,15 @@ public class BookService {
 
     // 도서 등록 기능
     public BookResponseDto registerBook(BookRequestDto requestDto){
-        Book book = new Book(requestDto.getTitle(), requestDto.getAuthor(),requestDto.getLanguage(),
-                requestDto.getPublisher(), requestDto.getCreateAt());
-        Book saveBook = bookRepository.save(book);
-        return new BookResponseDto(saveBook);
+        Book book = bookRepository.save(requestDto.toEntity());
+        return book.of();
     }
 
     // 선택한 도서 정보 조회 기능
     public BookResponseDto getBook(Long id){
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(" 아이디에 해당하는 책이 없습니다. " + id));
-        return new BookResponseDto(book);
+        return book.of();
     }
 
     // 도서 목록 조회

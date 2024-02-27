@@ -1,5 +1,8 @@
 package com.sparta.book.dto.book;
 
+import com.sparta.book.entity.Book;
+import com.sparta.book.entity.Member;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,13 +17,21 @@ public class BookRequestDto {
     private String author;
     private String language;
     private String publisher;
-    private LocalDateTime createAt;
 
-    public BookRequestDto(String title, String author, String language, String publisher, LocalDateTime createAt) {
+    @Builder
+    public BookRequestDto(String title, String author, String language, String publisher) {
         this.title = title;
         this.author = author;
         this.language = language;
         this.publisher = publisher;
-        this.createAt = createAt;
+    }
+
+    public Book toEntity() {
+        return Book.builder()
+                .title(title)
+                .author(author)
+                .language(language)
+                .publisher(publisher)
+                .build();
     }
 }

@@ -1,4 +1,4 @@
-package com.sparta.book.dto;
+package com.sparta.book.dto.book;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,5 @@
 package com.sparta.book.entity;
 
-import com.sparta.book.repository.Timestamped;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,13 +32,13 @@ public class Book extends Timestamped {
     private String publisher;
     // 등록일
     @Column(nullable = false)
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
     public Book(String title, String author, String language, String publisher, LocalDateTime createdAt) {
         this.title = title;
         this.author = author;
         this.language = language;
         this.publisher = publisher;
-        this.createAt = createdAt;
+        this.createdAt = createdAt;
     }
 }

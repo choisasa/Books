@@ -1,7 +1,7 @@
 package com.sparta.book.controller;
 
-import com.sparta.book.dto.BookRequestDto;
-import com.sparta.book.dto.BookResponseDto;
+import com.sparta.book.dto.book.BookRequestDto;
+import com.sparta.book.dto.book.BookResponseDto;
 import com.sparta.book.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

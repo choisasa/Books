@@ -1,7 +1,7 @@
 package com.sparta.book.service;
 
-import com.sparta.book.dto.BookRequestDto;
-import com.sparta.book.dto.BookResponseDto;
+import com.sparta.book.dto.book.BookRequestDto;
+import com.sparta.book.dto.book.BookResponseDto;
 import com.sparta.book.entity.Book;
 import com.sparta.book.repository.BookRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,10 +1,15 @@
 package com.sparta.book.entity;
 
-import com.sparta.book.repository.Timestamped;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sparta.book.dto.borrow.BorrowResponseDto;
+import com.sparta.book.dto.member.MemberResponseDto;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 
@@ -13,10 +18,9 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Table(name = "borrow")
-public class Borrow extends Timestamped {
+public class Borrow {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
     // 책 아이디
@@ -33,11 +37,17 @@ public class Borrow extends Timestamped {
     @Column(nullable = false)
     private boolean returnStatus;
 
-    // 대출 날짜 / 반납 날짜
+    // 대출 날짜
     @Column(nullable = false)
+    @CreatedDate
     private LocalDateTime borrowDateAt;
+
+    // 반납 날짜
+    @Column
+    @LastModifiedDate
     private LocalDateTime returnDateAt;
 
+    @Builder
     public Borrow(Book book, Member member, boolean returnStatus, LocalDateTime borrowDateAt, LocalDateTime returnDateAt) {
         this.book = book;
         this.member = member;
@@ -45,4 +55,20 @@ public class Borrow extends Timestamped {
         this.borrowDateAt = borrowDateAt;
         this.returnDateAt = returnDateAt;
     }
+
+    public void returned(LocalDateTime returnedAt) {
+        this.returnStatus = true;
+        this.returnDateAt = returnedAt;
+    }
+
+    public BorrowResponseDto of() {
+        return BorrowResponseDto.builder()
+                .book(book)
+                .member(member)
+                .returnStatus(returnStatus)
+                .borrowDateAt(borrowDateAt)
+                .returnDateAt(returnDateAt)
+                .build();
+    }
 }
+

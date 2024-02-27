@@ -1,4 +1,4 @@
-package com.sparta.book.repository;
+package com.sparta.book.entity;
 
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
@@ -16,4 +16,5 @@ public abstract class Timestamped {
 
     @LastModifiedDate
     private LocalDateTime modifiedAt;
+
 }

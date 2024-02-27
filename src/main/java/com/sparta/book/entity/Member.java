@@ -1,17 +1,15 @@
 package com.sparta.book.entity;
 
-import com.sparta.book.service.Timestamped;
+import com.sparta.book.dto.MemberRequestDto;
+import com.sparta.book.dto.MemberResponseDto;
+import com.sparta.book.repository.Timestamped;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.sql.Timestamp;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "member1")
 public class Member extends Timestamped {
     @Id
@@ -39,11 +37,22 @@ public class Member extends Timestamped {
     private String socialSecurityNumber;
 
 
+    @Builder
     public Member(String name, String gender, String phoneNumber, String address, String socialSecurityNumber) {
-        this.name = name;
-        this.gender = gender;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-        this.socialSecurityNumber = socialSecurityNumber;
+       this.name = name;
+       this.gender = gender;
+       this.phoneNumber = phoneNumber;
+       this.address = address;
+       this.socialSecurityNumber = socialSecurityNumber;
+    }
+
+    public MemberResponseDto of() {
+        return MemberResponseDto.builder()
+                .name(name)
+                .gender(gender)
+                .phoneNumber(phoneNumber)
+                .address(address)
+                .socialSecurityNumber(socialSecurityNumber)
+                .build();
     }
 }

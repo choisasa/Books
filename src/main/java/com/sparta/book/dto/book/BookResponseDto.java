@@ -8,13 +8,12 @@ import java.time.LocalDateTime;
 
 @Getter
 public class BookResponseDto {
-    private Long id;
+
     private String title;
     private String author;
     private String language;
     private String publisher;
     private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
 
     @Builder
     public BookResponseDto(String title, String author, String language, String publisher, LocalDateTime createdAt, LocalDateTime modifiedAt){
@@ -23,7 +22,6 @@ public class BookResponseDto {
         this.language = language;
         this.publisher = publisher;
         this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
     }
 
     public BookResponseDto(Book book){
@@ -32,7 +30,6 @@ public class BookResponseDto {
         this.language = book.getLanguage();
         this.publisher = book.getPublisher();
         this.createdAt = book.getCreatedAt();
-        this.modifiedAt = book.getModifiedAt();
     }
 
 }

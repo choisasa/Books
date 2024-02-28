@@ -1,12 +1,12 @@
 package com.sparta.book.dto.borrow;
 
-import com.sparta.book.entity.Book;
 import com.sparta.book.entity.Borrow;
-import com.sparta.book.entity.Member;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+@Getter
 public class BorrowResponseDto {
 
     // PK

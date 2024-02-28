@@ -43,8 +43,13 @@ public class Borrow extends TimestampedBorrow{
         return BorrowResponseDto.builder()
                 .book(book.getId())
                 .member(member.getId())
-                .returnStatus(returnStatus)
                 .build();
     }
+
+    public void returnConvert() {
+        returnStatus = !returnStatus;
+    }
+
 }
+
 

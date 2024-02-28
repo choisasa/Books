@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
-@Data
 public class BorrowRequestDto {
 
     // PK
@@ -37,8 +36,6 @@ public class BorrowRequestDto {
         return Borrow.builder()
                 .book(book)
                 .member(member)
-                .returnStatus(returnStatus)
-                .borrowDateAt(LocalDateTime.now())
                 .build();
     }
 

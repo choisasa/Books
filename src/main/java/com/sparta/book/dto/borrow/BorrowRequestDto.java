@@ -19,10 +19,10 @@ public class BorrowRequestDto {
     private Long id;
 
     // 책 아이디
-    private Book book;
+    private Long bookId;
 
     // 회원 아이디
-    private Member member;
+    private Long memberId;
 
     // 반납 여부
     private boolean returnStatus;
@@ -33,13 +33,12 @@ public class BorrowRequestDto {
     // 반납 날짜
     private LocalDateTime returnDateAt;
 
-    public Borrow toEntity() {
+    public Borrow toEntity(Book book, Member member) {
         return Borrow.builder()
                 .book(book)
                 .member(member)
                 .returnStatus(returnStatus)
-                .borrowDateAt(borrowDateAt)
-                .returnDateAt(returnDateAt)
+                .borrowDateAt(LocalDateTime.now())
                 .build();
     }
 

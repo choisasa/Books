@@ -1,12 +1,11 @@
 package com.sparta.book.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sparta.book.dto.borrow.BorrowResponseDto;
-import com.sparta.book.dto.member.MemberResponseDto;
 import jakarta.persistence.*;
-import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -42,8 +41,8 @@ public class Borrow extends TimestampedBorrow{
 
     public BorrowResponseDto of() {
         return BorrowResponseDto.builder()
-                .book(book)
-                .member(member)
+                .book(book.getId())
+                .member(member.getId())
                 .returnStatus(returnStatus)
                 .build();
     }

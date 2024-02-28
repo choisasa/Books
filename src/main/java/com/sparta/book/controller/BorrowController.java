@@ -6,6 +6,7 @@ import com.sparta.book.dto.borrow.GetBorrowResponseDto;
 import com.sparta.book.service.BorrowService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +21,10 @@ public class BorrowController {
     // 대출
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void borrowBook(@RequestBody BorrowRequestDto borrowRequestDto) {
-        borrowService.borrowBook(borrowRequestDto);
+    public ResponseEntity<?> borrowBook(@RequestBody BorrowRequestDto borrowRequestDto) {
+        BorrowResponseDto borrowResponseDto = borrowService.borrowBook(borrowRequestDto);
+
+        return ResponseEntity.ok(borrowResponseDto);
     }
 
     // 반납

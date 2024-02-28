@@ -1,6 +1,7 @@
 package com.sparta.book.dto.borrow;
 
 import com.sparta.book.entity.Book;
+import com.sparta.book.entity.Borrow;
 import com.sparta.book.entity.Member;
 import lombok.Builder;
 
@@ -12,10 +13,10 @@ public class BorrowResponseDto {
     private Long id;
 
     // 책 아이디
-    private Book book;
+    private Long bookId;
 
     // 회원 아이디
-    private Member member;
+    private Long memberId;
 
     // 반납 여부
     private boolean returnStatus;
@@ -27,14 +28,23 @@ public class BorrowResponseDto {
     private LocalDateTime returnDateAt;
 
     @Builder
-    public BorrowResponseDto(Book book, Member member, boolean returnStatus, LocalDateTime borrowDateAt, LocalDateTime returnDateAt){
-        this.book = book;
-        this.member = member;
+    public BorrowResponseDto(Long id, Long book, Long member, boolean returnStatus, LocalDateTime borrowDateAt, LocalDateTime returnDateAt){
+        this.id = id;
+        this.bookId = book;
+        this.memberId = member;
         this.returnStatus = returnStatus;
         this.borrowDateAt = borrowDateAt;
         this.returnDateAt = returnDateAt;
     }
 
+    public BorrowResponseDto(Borrow borrow){
+        this.id = borrow.getId();
+        this.bookId = borrow.getBook().getId();
+        this.memberId = borrow.getMember().getId();
+        this.returnStatus = borrow.isReturnStatus();
+        this.borrowDateAt = borrow.getBorrowDateAt();
+        this.returnDateAt = borrow.getReturnDateAt();
+    }
 
 }
 

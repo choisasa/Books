@@ -24,13 +24,13 @@ public class BookService {
     // 선택한 도서 정보 조회 기능
     public BookResponseDto getBook(Long id){
         Book book = bookRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException(" 아이디에 해당하는 책이 없습니다. " + id));
+                .orElseThrow(() -> new IllegalArgumentException("해당하는 도서가 없습니다."));
         return book.of();
     }
 
     // 도서 목록 조회
     public List<BookResponseDto> getAllBooks(){
-        List<Book> books = bookRepository.findAll();
+        List<Book> books = bookRepository.findAllByOrderByCreatedAtAsc();
         return books.stream()
                 .map(BookResponseDto::new)
                 .collect(Collectors.toList());

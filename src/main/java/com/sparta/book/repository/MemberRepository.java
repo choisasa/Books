@@ -1,4 +1,4 @@
-package com.sparta.book.service;
+package com.sparta.book.repository;
 
 import com.sparta.book.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;

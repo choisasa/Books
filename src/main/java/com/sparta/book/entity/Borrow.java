@@ -1,31 +1,30 @@
 package com.sparta.book.entity;
 
-import com.sparta.book.service.Timestamped;
+import com.sparta.book.dto.borrow.BorrowResponseDto;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "borrow")
-public class Borrow extends Timestamped {
+public class Borrow extends TimestampedBorrow{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
     // 책 아이디
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;
 
     // 회원 아이디
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
@@ -33,16 +32,19 @@ public class Borrow extends Timestamped {
     @Column(nullable = false)
     private boolean returnStatus;
 
-    // 대출 날짜 / 반납 날짜
-    @Column(nullable = false)
-    private LocalDateTime borrowDateAt;
-    private LocalDateTime returnDateAt;
-
+    @Builder
     public Borrow(Book book, Member member, boolean returnStatus, LocalDateTime borrowDateAt, LocalDateTime returnDateAt) {
         this.book = book;
         this.member = member;
         this.returnStatus = returnStatus;
-        this.borrowDateAt = borrowDateAt;
-        this.returnDateAt = returnDateAt;
+    }
+
+    public BorrowResponseDto of() {
+        return BorrowResponseDto.builder()
+                .book(book.getId())
+                .member(member.getId())
+                .returnStatus(returnStatus)
+                .build();
     }
 }
+

@@ -1,5 +1,6 @@
 package com.sparta.book.repository;
 
+import com.sparta.book.dto.borrow.GetBorrowResponseDto;
 import com.sparta.book.entity.Book;
 import com.sparta.book.entity.Borrow;
 import com.sparta.book.entity.Member;
@@ -11,6 +12,9 @@ public interface BorrowRepository extends JpaRepository<Borrow, Long> {
 
     Borrow findByBook(Book book);
 
-    List<Borrow> findByMemberOrderByBorrowDateAtDesc(Member member);
+    // count 있으면 true, 없으면 false
+    boolean existsByBook(Book book);
+
+    List<Borrow> findByMemberOrderByBorrowDateAtAsc(Member member);
 
 }

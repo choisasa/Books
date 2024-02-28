@@ -46,6 +46,10 @@ public class Borrow extends TimestampedBorrow{
                 .build();
     }
 
+    public void returnConvert() {
+        returnStatus = !returnStatus;
     }
+
+}
 
 

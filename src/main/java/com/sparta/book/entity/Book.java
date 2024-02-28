@@ -29,17 +29,13 @@ public class Book extends TimestampedBook {
     // 출판사
     @Column(nullable = false)
     private String publisher;
-    // 등록일
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
 
     @Builder
-    public Book(String title, String author, String language, String publisher, LocalDateTime createdAt) {
+    public Book(String title, String author, String language, String publisher) {
         this.title = title;
         this.author = author;
         this.language = language;
         this.publisher = publisher;
-        this.createdAt = createdAt;
     }
 
     public BookResponseDto of() {
@@ -48,7 +44,6 @@ public class Book extends TimestampedBook {
                 .author(author)
                 .language(language)
                 .publisher(publisher)
-                .createdAt(createdAt)
                 .build();
     }
 }

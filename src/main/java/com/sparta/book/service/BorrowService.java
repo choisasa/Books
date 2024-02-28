@@ -17,7 +17,6 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class BorrowService {
 
     private final BorrowRepository borrowRepository;
@@ -29,7 +28,6 @@ public class BorrowService {
 
         // 도서 조회
         Book book = bookRepository.findById(borrowRequestDto.getBookId()).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 도서입니다."));
-        log.info("book.getId : {}", book.getId());
 
         Member member = memberRepository.findById(borrowRequestDto.getMemberId()).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
 
@@ -60,11 +58,9 @@ public class BorrowService {
     // 반납
     @Transactional
     public void returnBook(Long bookId) {
-        log.info("반납 요청된 도서 ID : {}", bookId);
 
         Book book = bookRepository.findById(bookId).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 도서입니다."));
 
-        log.info("조회된 도서 : {}", book.getId());
         Borrow borrow = borrowRepository.findByBook(book);
 
         // 대출 기록 조회
@@ -102,7 +98,7 @@ public class BorrowService {
         // 도서 식별값으로 대출 내역 조회
         Borrow borrow = borrowRepository.findByBook(book);
 
-        // 대출 내역이 없거나 모든 대출이 반납된 경우에만 대출 가능
+        // 대출 내역 반환
         return borrow.isReturnStatus();
     }
 }

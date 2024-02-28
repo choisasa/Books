@@ -14,10 +14,10 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/borrow")
-@Slf4j
 public class BorrowController {
 
     private final BorrowService borrowService;
+
 
     // 대출
     @PostMapping
@@ -51,5 +51,4 @@ public class BorrowController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
-
 }
